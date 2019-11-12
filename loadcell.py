@@ -77,18 +77,20 @@ while True:
         # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
     # val = hx.get_weight(5)
         val = max(0,int(hx.get_weight(5)))
-        print("weight: ",val)
+        #print("weight: ",val)
+        print("weight:"+str(val)+"g")
         if val == 0:
             reset = 0
             
         if val > 0 and reset == 0:
             time.sleep(0.2)
             conn, addr = s.accept()
-            print("con ok", conn)
+            #print("con ok", conn)
+            print("ชั่งน้ำหนักเสร็จสิ้น")
             data = conn.recv(1024)
             if not data: break
             val = max(0,int(hx.get_weight(5)))
-            print("weight: ",val)
+            print("weight:"+str(val)+"g")
             conn.send(str(val).encode())
             reset = 1
             continue
